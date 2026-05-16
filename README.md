@@ -18,6 +18,16 @@ cp .env.example .env
 
 ## Run
 
+**Web UI (recommended):**
+```bash
+streamlit run app.py
+```
+Opens in your browser at `http://localhost:8501`. Click **Generate today's draft** —
+the tweet appears with a 280-char counter, "Open in X to post" button, and a
+sidebar showing every past draft. Use **Test sources only** to verify network
+access without spending API credit.
+
+**Command line:**
 ```bash
 python run.py              # gather + propose, write to drafts/YYYY-MM-DD.md
 python run.py --dry        # show signal counts only, no API call
@@ -32,7 +42,8 @@ agent/
   sources.py   ← Signal collectors (HN, Reddit, RSS, OpenRouter)
   propose.py   ← Claude call: signal + history → one tweet
   history.py   ← Past drafts, to avoid repetition
-run.py         ← Daily entry point
+app.py         ← Streamlit web UI
+run.py         ← CLI daily entry point
 drafts/        ← Output: YYYY-MM-DD.md + history.json
 ```
 
