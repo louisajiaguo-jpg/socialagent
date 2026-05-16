@@ -7,6 +7,7 @@ Run with:
 
 from __future__ import annotations
 
+import os
 import time
 from datetime import datetime
 from pathlib import Path
@@ -18,6 +19,11 @@ from agent import history, sources
 from agent.propose import propose_tweet
 
 load_dotenv()
+
+# When deployed to Streamlit Cloud, the API key lives in st.secrets instead
+# of a .env file. Copy it into os.environ so the anthropic SDK finds it.
+if "ANTHROPIC_API_KEY" in st.secrets and not os.environ.get("ANTHROPIC_API_KEY"):
+    os.environ["ANTHROPIC_API_KEY"] = st.secrets["ANTHROPIC_API_KEY"]
 
 st.set_page_config(
     page_title="GMI Cloud — Daily Tweet Drafter",
