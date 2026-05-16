@@ -1,0 +1,7 @@
+.env
+__pycache__/
+*.pyc
+drafts/history.json
+daily.log
+.venv/
+venv/
